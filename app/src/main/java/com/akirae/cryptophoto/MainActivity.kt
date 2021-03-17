@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun decrypt(view: View) {
-        startActivity(Intent(this@MainActivity, CryptoActivity::class.java))
+        startActivity(Intent(this@MainActivity, DecryptActivity::class.java))
     }
     fun encrypt(view: View) {
-        startActivity(Intent(this@MainActivity, CryptoActivity::class.java))
+        startActivity(Intent(this@MainActivity, EncryptActivity::class.java))
     }
 }
