@@ -12,13 +12,12 @@ import com.akirae.cryptophoto.databinding.ActivityDecryptBinding
 
 class DecryptActivity : AppCompatActivity() {
     private val model: DecryptModel by viewModels()
-    private lateinit var binding: ActivityDecryptBinding
+    private val binding by lazy { ActivityDecryptBinding.inflate(layoutInflater) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDecryptBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
 
@@ -70,8 +69,8 @@ class DecryptActivity : AppCompatActivity() {
             bitmapCover.width,
             bitmapCover.height
         )
+        binding.loader.visibility = View.VISIBLE
         model.decrypt(pixelsCover)
         bitmapCover.recycle()
-        binding.loader.visibility = View.VISIBLE
     }
 }
