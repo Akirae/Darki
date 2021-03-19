@@ -1,5 +1,6 @@
 package com.akirae.cryptophoto
 
+import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,6 +13,12 @@ import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.akirae.cryptophoto.databinding.ActivityEncryptBinding
+import android.graphics.Bitmap.CompressFormat
+
+import android.R.attr.bitmap
+import android.os.Environment
+import java.io.FileOutputStream
+
 
 class EncryptActivity : AppCompatActivity() {
     companion object {
@@ -133,10 +140,12 @@ class EncryptActivity : AppCompatActivity() {
             MediaStore.Images.Media.insertImage(resolver, b, "image", "img")
             b.recycle()
             bitmap.recycle()
+            model.decrypt(model.encryptedPixels.value!!)
         } catch (exception: Exception) {
             exception.printStackTrace()
 
         }
+
     }
 
 }

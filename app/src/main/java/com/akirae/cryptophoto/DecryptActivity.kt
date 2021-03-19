@@ -30,7 +30,7 @@ class DecryptActivity : AppCompatActivity() {
             val bitmapCover =
                 BitmapFactory.decodeStream(contentResolver.openInputStream(model.uriCover.value!!))
 
-            val b = bitmapCover.copy(Bitmap.Config.ARGB_8888, true)
+            val b = Bitmap.createBitmap(bitmapCover.width,bitmapCover.height,Bitmap.Config.ARGB_8888)
             b.setPixels(
                 it,
                 0,
