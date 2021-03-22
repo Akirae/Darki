@@ -1,23 +1,23 @@
 package com.akirae.cryptophoto
 
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Environment
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.akirae.cryptophoto.databinding.ActivityEncryptBinding
-import android.graphics.Bitmap.CompressFormat
-
-import android.R.attr.bitmap
-import android.os.Environment
+import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class EncryptActivity : AppCompatActivity() {
@@ -135,12 +135,33 @@ class EncryptActivity : AppCompatActivity() {
             val resourceUri = model.uriSecret.value!!
             val bitmap = BitmapFactory.decodeStream(resolver.openInputStream(resourceUri))
             val b = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-            b.setPixels(model.encryptedPixels.value, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-            MediaStore.Images.Media.insertImage(resolver, b, "image", "img")
+            b.setPixels(
+                model.encryptedPixels.value,
+                0,
+                bitmap.width,
+                0,
+                0,
+                bitmap.width,
+                bitmap.height
+            )
+            try {
+                val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss",Locale.getDefault()).format(Date())
+                val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                val file = File(storageDir, "JPEG_${timeStamp}_.jpg")
+                val out = FileOutputStream(file)
+                b.compress(CompressFormat.PNG, 70, out)
+                out.close()
+                out.flush()
+                Toast.makeText(this, "Сохранено!", Toast.LENGTH_SHORT).show()
+            } catch (e: java.lang.Exception) {
+                Toast.makeText(
+                    this, "Ошибка при сохранении. Повторите попытку.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            //MediaStore.Images.Media.insertImage(resolver, b, "image", "img")
             b.recycle()
             bitmap.recycle()
-            model.decrypt(model.encryptedPixels.value!!)
         } catch (exception: Exception) {
             exception.printStackTrace()
 

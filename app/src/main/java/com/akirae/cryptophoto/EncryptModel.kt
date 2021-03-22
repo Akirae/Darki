@@ -24,7 +24,7 @@ class EncryptModel : ViewModel() {
 
     fun encrypt(cover: IntArray, secret: IntArray) {
 
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             cover.mapIndexed { index, pixel ->
                 async {
                     shuffle(pixel, secret[index])
@@ -45,30 +45,6 @@ class EncryptModel : ViewModel() {
                 (Color.green(cover) and mask) or (Color.green(secret).shr(8 - significantBitsCount))
             val resB: Int =
                 (Color.blue(cover) and mask) or (Color.blue(secret).shr(8 - significantBitsCount))
-            return Color.argb(255, resR, resG, resB)
-        }
-
-        fun decrypt(encryptedPixels: IntArray) {
-            viewModelScope.launch(Dispatchers.Default) {
-                encryptedPixels
-                    .map {
-                        async {
-                            shuffle(it)
-                        }
-                    }
-                    .awaitAll()
-                    .also {
-                        withContext(Dispatchers.Main) {
-                            this@EncryptModel.encryptedPixels.value = it.toIntArray()
-                        }
-                    }
-            }
-        }
-
-        private fun shuffle(cover: Int): Int {
-            val resR: Int = Color.red(cover).shl(8 - significantBitsCount) and 255
-            val resG: Int = Color.green(cover).shl(8 - significantBitsCount) and 255
-            val resB: Int = Color.blue(cover).shl(8 - significantBitsCount) and 255
             return Color.argb(255, resR, resG, resB)
         }
 

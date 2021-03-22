@@ -4,9 +4,11 @@ import android.graphics.Color
 import android.util.Log
 import androidx.core.graphics.red
 import androidx.core.graphics.toColor
+import kotlinx.coroutines.*
 import org.junit.Test
 
 import org.junit.Assert.*
+import kotlin.system.measureTimeMillis
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,22 +16,6 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-
-    @Test
-    fun mask() {
-
-
-        val significantBitsCount = 4
-        val maske = (255 shr significantBitsCount) shl significantBitsCount
-        val maskd = (255 shr (8 - significantBitsCount)).shl(4).inv()
-        assertEquals(maske, 240)
-        assertEquals(maskd, 15)
-
-    }
 
     @Test
     fun encrypt() {
@@ -52,7 +38,7 @@ class ExampleUnitTest {
         val a = coverR.and(mask).toString(2)
         val b = secretR.shr(8 - significantBitsCount).toString(2)
         val c = ((coverR and mask) or secretR.shr(8 - significantBitsCount)).toString(2)
-        val d = a + b + c+co+s
+        val d = a + b + c + co + s
         assertEquals(resR, 162)
         assertEquals(resG, 94)
         assertEquals(resB, 27)
@@ -73,5 +59,36 @@ class ExampleUnitTest {
         assertEquals(resR, 64)
         assertEquals(resG, 192)
         assertEquals(resB, 96)
+    }
+
+    @Test
+    fun parallel() {
+        val parMapTime = measureTimeMillis {
+            runBlocking (Dispatchers.IO) {
+                (1..600_000)
+                    .toList()
+                    .mapParallel { it * 3 }
+            }
+        }
+        println(parMapTime)
+    }
+
+    @Test
+    fun parallel1() {
+        val parMapTime = measureTimeMillis {
+            runBlocking(Dispatchers.Default) {
+                (1..600_000)
+                    .toList()
+                    .mapParallel1 { it * 3 }
+            }
+        }
+        println("1 "+parMapTime)
+    }
+
+    suspend fun <T, R> Iterable<T>.mapParallel(transform: (T) -> R): List<R> = coroutineScope {
+        map { async  { transform(it) } }.awaitAll()
+    }
+    suspend fun <T, R> Iterable<T>.mapParallel1(transform: (T) -> R): List<R> = coroutineScope {
+        map { async { transform(it) } }.map { it.await() }
     }
 }
