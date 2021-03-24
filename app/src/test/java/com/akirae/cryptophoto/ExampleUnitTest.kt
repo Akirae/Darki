@@ -1,13 +1,8 @@
 package com.akirae.cryptophoto
 
-import android.graphics.Color
-import android.util.Log
-import androidx.core.graphics.red
-import androidx.core.graphics.toColor
 import kotlinx.coroutines.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 import kotlin.system.measureTimeMillis
 
 /**
@@ -73,22 +68,8 @@ class ExampleUnitTest {
         println(parMapTime)
     }
 
-    @Test
-    fun parallel1() {
-        val parMapTime = measureTimeMillis {
-            runBlocking(Dispatchers.Default) {
-                (1..600_000)
-                    .toList()
-                    .mapParallel1 { it * 3 }
-            }
-        }
-        println("1 "+parMapTime)
-    }
 
     suspend fun <T, R> Iterable<T>.mapParallel(transform: (T) -> R): List<R> = coroutineScope {
-        map { async  { transform(it) } }.awaitAll()
-    }
-    suspend fun <T, R> Iterable<T>.mapParallel1(transform: (T) -> R): List<R> = coroutineScope {
-        map { async { transform(it) } }.map { it.await() }
+        map { async (Dispatchers.Default)  { transform(it) } }.awaitAll()
     }
 }

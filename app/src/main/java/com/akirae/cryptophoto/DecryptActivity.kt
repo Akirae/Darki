@@ -24,6 +24,7 @@ class DecryptActivity : AppCompatActivity() {
         model.uriCover.observe(this, {
             binding.result.setImageURI(it)
         })
+
         model.decryptedPixels.observe(this, {
             binding.loader.visibility = View.GONE
 

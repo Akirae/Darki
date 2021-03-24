@@ -96,6 +96,7 @@ class EncryptActivity : AppCompatActivity() {
                 bitmapCover.width,
                 bitmapCover.height
             )
+            bitmapCover.recycle()
 
             val bitmapSecret =
                 BitmapFactory.decodeStream(contentResolver.openInputStream(model.uriSecret.value!!))
@@ -109,13 +110,9 @@ class EncryptActivity : AppCompatActivity() {
                 bitmapSecret.width,
                 bitmapSecret.height
             )
-
-            if (pixelsCover.size == pixelsSecret.size) model.encrypt(pixelsCover, pixelsSecret)
-
-            bitmapCover.recycle()
             bitmapSecret.recycle()
+            if (pixelsCover.size == pixelsSecret.size) model.encrypt(pixelsCover, pixelsSecret)
         }
-
     }
 
 
@@ -149,7 +146,7 @@ class EncryptActivity : AppCompatActivity() {
                 val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                 val file = File(storageDir, "JPEG_${timeStamp}_.jpg")
                 val out = FileOutputStream(file)
-                b.compress(CompressFormat.PNG, 70, out)
+                b.compress(CompressFormat.PNG, 0, out)
                 out.close()
                 out.flush()
                 Toast.makeText(this, "Сохранено!", Toast.LENGTH_SHORT).show()
