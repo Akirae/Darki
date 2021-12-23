@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.akirae.darki.ui.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_encryptFragment"
+            app:destination="@id/encryptFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_decryptFragment"
+            app:destination="@id/decryptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/encryptFragment"
+        android:name="com.akirae.darki.ui.encrypt.EncryptFragment"
+        android:label="fragment_encrypt"
+        tools:layout="@layout/fragment_encrypt" />
+    <fragment
+        android:id="@+id/decryptFragment"
+        android:name="com.akirae.darki.ui.decrypt.DecryptFragment"
+        android:label="DecryptFragment" />
+</navigation>

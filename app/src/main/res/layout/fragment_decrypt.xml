@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
+        app:title="Извлечение изображения"
+        app:titleTextAppearance="@style/toolbar"
+        app:titleTextColor="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/decrypt"
+        style="@style/FilledButton"
+        android:text="Извлечь"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_lock"
+        app:iconSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save"
+        style="@style/FilledButton"
+        android:text="Сохранить"
+        android:visibility="gone"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_lock"
+        app:iconSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/coverText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Изображение"
+        android:textColor="@color/white_80"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@id/guidelineCover" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/selectCoverButton"
+        style="@style/IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="choosePhotoCover"
+        android:text="Выбрать"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_baseline_add_photo_alternate_24"
+        app:iconSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@id/coverText" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/coverIsSelectedGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="coverImageView,removeCoverPhoto" />
+
+    <ImageView
+        android:id="@+id/coverImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_outline"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineCoverBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@id/coverText" />
+
+    <ImageView
+        android:id="@+id/removeCoverPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_cancel_24"
+        app:layout_constraintBottom_toTopOf="@id/coverImageView"
+        app:layout_constraintEnd_toEndOf="@id/coverImageView"
+        app:layout_constraintStart_toEndOf="@id/coverImageView"
+        app:layout_constraintTop_toTopOf="@id/coverImageView"
+        app:tint="@color/white_80" />
+
+    <FrameLayout
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_50"
+        android:elevation="8dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:progressTint="@color/purple_500"
+            android:shadowColor="@color/purple_500"
+            android:shadowRadius="10" />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCoverBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="36dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="36dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

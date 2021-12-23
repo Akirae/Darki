@@ -3,12 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/darki_logo.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/gradient.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_back.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_encryption.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_encryption_1_.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_group.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/ic_printed_circuit_board.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/rect.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/drawable/rounded_outline.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/activity_crypto.xml" value="0.2930253623188406" />
-        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/activity_decrypt.xml" value="0.371875" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/activity_decrypt.xml" value="0.25" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/activity_encrypt.xml" value="0.25" />
         <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/activity_main.xml" value="0.2930253623188406" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/fragment_decrypt.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/fragment_encrypt.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/irens/StudioProjects/CryptoPhoto/app/src/main/res/layout/fragment_main.xml" value="0.165" />
       </map>
     </option>
   </component>

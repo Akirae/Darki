@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.akirae.cryptophoto">
+    package="com.akirae.darki">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launch"
         android:label="@string/app_name"
+        android:name="com.akirae.darki.MainApplication"
         android:roundIcon="@mipmap/ic_launch_round"
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/Theme.CryptoPhoto">
-        <activity
-            android:name=".DecryptActivity"
-            android:exported="true"></activity>
-        <activity android:name=".EncryptActivity" />
-        <activity android:name=".MainActivity">
+
+        <activity android:name="com.akirae.darki.ui.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +25,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.akirae.cryptophoto.fileprovider"
+            android:authorities="com.akirae.darki.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
